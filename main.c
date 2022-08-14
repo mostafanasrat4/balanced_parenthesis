@@ -4,11 +4,6 @@
 
 #define SPACER printf("----------------------------------------------\n")
 
-
-
-
-
-
 int checkPair(char item1,char item2);
 int isParenthesisBalanced(char exp[]);
 
@@ -17,20 +12,25 @@ int main() {
     SPACER;
     printf("\n        Balanced Parenthesis Checker\n\n");
     SPACER;
+    
     char exp[MAX], response='y', trash[MAX];
+    
     while(response == 'y'){
         printf("Enter your expression: ");
         scanf("%s", &exp);
         printf("\n");
+
         isParenthesisBalanced(exp) ?
             printf("        Parenthesis Are Balanced\n") :
             printf("        Parenthesis Are Not Balanced\n");
         SPACER;
+        
         printf("\nCheck another expression?\n");
         printf("     y:'YES'   n:'NO'\n");
         fgets(trash, 100, stdin);  
         scanf("%c", &response);
     }
+
     SPACER;
     printf("    Thanks for your time!\n");
     SPACER;
@@ -38,11 +38,15 @@ int main() {
 }
 
 
-
+// Check if the two input parameters are matching parenthesis
 int checkPair(char item1,char item2){
     return (( item1=='(' && item2==')' )||( item1=='[' && item2==']' )||( item1=='{' && item2=='}' ));
 }
 
+
+// Check if every opening parenthesis "(-{-[" has the corresponding closing one ")-}-]"
+// It takes a string that contains the expression to be checked
+// Characters other than "(-{-[-]-}-)" are normally ignored
 int isParenthesisBalanced(char exp[]){
 
     struct stack myStack;
